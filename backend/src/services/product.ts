@@ -11,7 +11,7 @@ export const getAllProduct = async (filters: ProductFilters) => {
   switch(filters.order) {
     case 'views': 
     default:
-      orderBy = { viesCount: 'desc' }
+      orderBy = { viewsCount: 'desc' }
       break;
     case 'selling':
       orderBy = { salesCount: 'desc' }
@@ -40,5 +40,9 @@ export const getAllProduct = async (filters: ProductFilters) => {
     take: filters.limit ?? undefined
   })
 
-  return products
+  return products.map(product => ({
+    ...product,
+    image: product.images[0] ? `media/products/${product.images[0].url}` : null,
+    images: undefined
+  }))
 }
