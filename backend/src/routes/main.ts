@@ -12,3 +12,4 @@ route.get('/banners', bannerController.getBanner )
 
 route.get('/products', productController.getProducts )
 route.get('/product/:id', productController.getOneProduct )
+route.get('/product/:id/related', productController.getRelatedProducts )
