@@ -19,3 +19,4 @@ route.get('/product/:id/related', productController.getRelatedProducts )
 route.get('/category/:slug/metadata', categoryController.getCategoryWithMetadata)
 
 route.post('/cart/mount', cartController.cartMount)
+route.get('/cart/shipping', cartController.calculateShipping)
