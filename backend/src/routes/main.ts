@@ -9,4 +9,6 @@ route.get('/ping', (req, res) => {
 } )
 
 route.get('/banners', bannerController.getBanner )
+
 route.get('/products', productController.getProducts )
+route.get('/product/:id', productController.getOneProduct )
