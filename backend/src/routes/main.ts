@@ -3,6 +3,7 @@ import * as bannerController from '../controllers/banner'
 import * as productController from '../controllers/product'
 import * as categoryController from '../controllers/category'
 import * as cartController from '../controllers/cart'
+import * as userController from '../controllers/user'
 
 export const route = Router()
 
@@ -20,3 +21,5 @@ route.get('/category/:slug/metadata', categoryController.getCategoryWithMetadata
 
 route.post('/cart/mount', cartController.cartMount)
 route.get('/cart/shipping', cartController.calculateShipping)
+
+route.post('/user/register', userController.register)
