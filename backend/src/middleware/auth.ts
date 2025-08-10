@@ -9,7 +9,7 @@ export const authMiddleware = async (req: Request, res: Response, next: NextFunc
   }
 
   const tokenSplit = authHeader.split('Bearer ')
-  if(tokenSplit[1]) {
+  if(!tokenSplit[1]) {
     res.status(401).json({ erro: 'acesso negado' })
     return
   }
