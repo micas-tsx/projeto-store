@@ -35,6 +35,15 @@ export const logUser = async(email: string, password: string) => {
     where: { id: user.id },
     data: { token }
   })
-  
+
   return token
+}
+
+export const getUserIdByToken = async (token: string) => {
+  const user = await prisma.user.findFirst({
+    where: { token }
+  })
+  if(!user) return null
+
+  return user.id
 }
