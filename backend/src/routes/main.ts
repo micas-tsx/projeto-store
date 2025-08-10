@@ -23,3 +23,4 @@ route.post('/cart/mount', cartController.cartMount)
 route.get('/cart/shipping', cartController.calculateShipping)
 
 route.post('/user/register', userController.register)
+route.post('/user/login', userController.login)
