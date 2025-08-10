@@ -1,6 +1,6 @@
 import type { RequestHandler } from "express";
 import { registerSchema } from "../schema/register-schema";
-import { createAddress, createUser, logUser } from "../services/user";
+import { createAddress, createUser, getAddressesFromUserId, logUser } from "../services/user";
 import { loginSchema } from "../schema/login-schema";
 import { addAddressSchema } from "../schema/add-address-schema";
 
@@ -59,4 +59,16 @@ export const addAddress: RequestHandler = async (req,res) => {
   }
 
   res.status(201).json({ erro: null, address })
+}
+
+export const getAddresses: RequestHandler = async( req, res ) => {
+  const userId = (req as any).userId
+  if(!userId) {
+    res.status(401).json({ erro: "acesso negado" })
+    return
+  }
+
+  const addresses = await getAddressesFromUserId(userId)
+
+  res.json({ erro: null, addresses })
 }
