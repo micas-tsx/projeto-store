@@ -112,7 +112,7 @@ model Order {
   userId             Int
   status             String         @default("pending")
   total              Float
-  shippingCost      Float          @default(0)
+  shippingCost       Float          @default(0)
   shippingDays       Int            @default(0)
   shippingZipcode    String?
   shippingStreet     String?
@@ -132,6 +132,7 @@ model OrderProduct {
   orderId   Int
   productId Int
   quantity  Int      @default(1)
+  price     Float    @default(0)
   createAt  DateTime @default(now())
   updatedAt DateTime @default(now()) @updatedAt
   order     Order    @relation(fields: [orderId], references: [id])

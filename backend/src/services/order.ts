@@ -12,13 +12,13 @@ type CreateOrderParams = {
 }
 
 export const createOrder = async ({ userId, address, shippingCost, shippingDays, cart }: CreateOrderParams) => {
-  let total = 0
+  let subtotal = 0
   let orderItems = []
 
   for(let cartItem of cart ) {
     const product = await getProduct(cartItem.productId)
     if(product) {
-      total += product.price * cartItem.quantity
+      subtotal += product.price * cartItem.quantity
     
       orderItems.push({
         productId: product.id,
@@ -27,6 +27,8 @@ export const createOrder = async ({ userId, address, shippingCost, shippingDays,
       })
     }
   }
+
+  let total = subtotal + shippingCost
 
   const order = await prisma.order.create({
     data: {

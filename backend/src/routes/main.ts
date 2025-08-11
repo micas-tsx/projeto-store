@@ -22,7 +22,7 @@ route.get('/category/:slug/metadata', categoryController.getCategoryWithMetadata
 
 route.post('/cart/mount', cartController.cartMount)
 route.get('/cart/shipping', cartController.calculateShipping)
-route.get('/cart/finish', authMiddleware, cartController.finish)
+route.post('/cart/finish', authMiddleware, cartController.finish)
 
 route.post('/user/register', userController.register)
 route.post('/user/login', userController.login)
