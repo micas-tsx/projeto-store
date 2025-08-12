@@ -35,3 +35,4 @@ route.post('/webhook/stripe', webhookController.stripe)
 
 route.get('/orders/session', orderController.getOrderBySessionId)
 route.get('/orders', authMiddleware, orderController.listOrders)
+route.get('/orders/:id', authMiddleware, orderController.getOrder)
