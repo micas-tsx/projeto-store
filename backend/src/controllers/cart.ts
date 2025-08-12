@@ -6,6 +6,7 @@ import { calculateShippingSchema } from "../schema/calculate-shipping-schema";
 import { cartFinishSchema } from "../schema/cart-finis-schema";
 import { getAddressById } from "../services/user";
 import { createOrder } from "../services/order";
+import { createPaymentLink } from "../services/payment";
 
 export const cartMount: RequestHandler = async (req,res) => {
   const parseResult = cartMountSchema.safeParse(req.body)
@@ -75,8 +76,18 @@ export const finish: RequestHandler = async(req,res) => {
     cart
   })
 
+  if(!orderId) {
+    res.status(400).json({ erro: 'ocorreu um erro' })
+    return
+  }
+
   // integrar meio de pagamento
-  let url = ''
+  let url = await createPaymentLink({ cart, shippingCost, orderId })
+
+  if(!url) {
+    res.status(400).json({ erro: 'não foi possível gerar o link de pagamento'})
+    return
+  }
 
   res.status(201).json({ erro: null, url })
 }
