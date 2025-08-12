@@ -5,6 +5,7 @@ import * as categoryController from '../controllers/category'
 import * as cartController from '../controllers/cart'
 import * as userController from '../controllers/user'
 import * as webhookController from '../controllers/webhook'
+import * as orderController from '../controllers/order'
 import { authMiddleware } from '../middleware/auth'
 
 export const route = Router()
@@ -31,3 +32,5 @@ route.post('/user/addresses', authMiddleware, userController.addAddress)
 route.get('/user/addresses', authMiddleware, userController.getAddresses)
 
 route.post('/webhook/stripe', webhookController.stripe)
+
+route.get('/orders/session', orderController.getOrderBySessionId)

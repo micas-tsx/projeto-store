@@ -1,5 +1,5 @@
 import type { CartItem } from "../types/cart-item"
-import { createStripeCheckouSession } from "../libs/stripe"
+import { createStripeCheckouSession, getStripeCheckoutSession } from "../libs/stripe"
 
 type CreatePaymentParams =  {
   cart: CartItem[]
@@ -8,22 +8,24 @@ type CreatePaymentParams =  {
 }
 
 export const createPaymentLink = async ({ cart, shippingCost, orderId }: CreatePaymentParams) => {
-  try{
-    console.log('🔄 Criando link de pagamento para pedido:', orderId)
-    console.log('📦 Itens no carrinho:', cart.length)
-    console.log('🚚 Custo do frete:', shippingCost)
-    
+  try{ 
     const session = await createStripeCheckouSession({ cart, shippingCost, orderId })
-    
-    if(!session.url) {
-      console.error('❌ Sessão Stripe criada mas sem URL')
-      return null
-    }
-
-    console.log('✅ Link de pagamento criado com sucesso')
+    if(!session.url) return null
     return session.url
-  } catch (error) {
-    console.error('❌ Erro ao criar link de pagamento:', error)
+  } catch {
+    return null
+  }
+}
+
+export const getOrderIdFromSession = async(sessionId: string) => {
+  try{
+    const session = await getStripeCheckoutSession(sessionId)
+    const orderId = session.metadata?.orderId
+
+    if(!orderId) return null
+
+    return parseInt(orderId)
+  } catch {
     return null
   }
 }
