@@ -6,8 +6,10 @@ const server = express()
 
 server.use(cors())
 server.use(express.static('public'))
-server.use(express.json())
 
+server.use('/webhook/stripe', express.raw({ type: 'application/json' }))
+
+server.use(express.json())
 server.use(route)
 
 server.use((err:any, req: Request, res: Response, next: NextFunction) => {

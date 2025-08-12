@@ -47,8 +47,14 @@ export const createOrder = async ({ userId, address, shippingCost, shippingDays,
     }
   })
 
-  if(!order) {
-    return null
-  }
+  if(!order) return null
+  
   return order.id
+}
+
+export const updatedOrderStatus = async(orderId: number, status: 'paid'| 'cancelled') => {
+  await prisma.order.update({
+    where: { id: orderId },
+    data: { status }
+  })
 }
