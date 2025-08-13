@@ -1,38 +1,88 @@
-"use client"
+"use client";
 
-import Image from "next/image"
-import { HeaderIcon } from './header-icon';
+import Image from "next/image";
+import { HeaderIcon } from "./header-icon";
 import Link from "next/link";
+import { useState } from "react";
+
+type MenuItem = {
+  label: string;
+  href: string;
+};
 
 export default function Header() {
+  const menu: MenuItem[] = [
+    { label: "Camisas", href: "/categories/camisas" },
+    { label: "Kits", href: "/categories/kit" },
+  ];
+
+  const [menuOpened, setMenuOpened] = useState(false);
+
   return (
     <header className="bg-white border-b border-gray-100">
       <div className="bg-black text-white p-4 text-center">
-        <strong>FRETE GRÁTIS</strong> para todo o Centro-Oest nas compras acima de R$ 199,00. <strong>APROVEITA!</strong>
+        <strong>FRETE GRÁTIS</strong> para todo o Centro-Oeste nas compras acima
+        de R$ 199,00. <strong>APROVEITA!</strong>
       </div>
+
       <div className="w-full max-w-6xl mx-auto p-6">
         <div className="flex items-center justify-between">
           <div className="w-32">
-            <Image
-              src="/assets/ui/logo-black.png"
-              alt="b7logo"
-              width={120}
-              height={40}
-            />
+            <Link href="/">
+              <Image
+                src="/assets/ui/logo-black.png"
+                alt="b7logo"
+                width={120}
+                height={40}
+              />
+            </Link>
           </div>
+
           <div className="flex gap-4">
-            <Link href={'/my-orders'}>
+            <Link href="/my-orders">
               <HeaderIcon src="/assets/ui/user-line.png" alt="perfil" />
             </Link>
-            <Link href={'/cart'}>
-              <HeaderIcon src="/assets/ui/shopping-bag-4-line.png" alt="carrinho" />
+            <Link href="/cart">
+              <HeaderIcon
+                src="/assets/ui/shopping-bag-4-line.png"
+                alt="carrinho"
+              />
             </Link>
-            <div className="md:hidden">
-              <HeaderIcon src="/assets/ui/menu-line.png" alt="menu" />
+            <div
+              className="md:hidden"
+              onClick={() => setMenuOpened(!menuOpened)}
+            >
+              <HeaderIcon
+                src="/assets/ui/menu-line.png"
+                alt="menu"
+                selected={menuOpened}
+                srcSelected="/assets/ui/menu-line-white.png"
+              />
             </div>
           </div>
         </div>
+
+        {menuOpened && (
+          <div className="md:hidden">
+            {menu.map((item) => (
+              <Link key={item.label} href={item.href}>
+                <div className="p-6 border-b border-gray-200 flex justify-between items-center">
+                  <div className="font-medium text-lg text-gray-500">
+                    {item.label}
+                  </div>
+                  <Image
+                    src="/assets/ui/arrow-up-right.png"
+                    alt="arrow"
+                    width={24}
+                    height={24}
+                  />
+                </div>
+              </Link>
+            ))} 
+          </div>
+        )}
+        <div className="p-6 md:hidden">busca mobile</div>
       </div>
     </header>
-  )
+  );
 }
