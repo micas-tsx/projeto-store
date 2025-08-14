@@ -1,5 +1,10 @@
+import { Banners } from "@/components/home/banners";
+import { data } from '@/data'
+
 export default function Page() {
   return(
-    <div>é o micas</div>
+    <div>
+      <Banners list={data.banners} />
+    </div>
   )
 }
