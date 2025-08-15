@@ -1,5 +1,6 @@
 import { Banners } from "@/components/home/banners";
 import { MostViewedProducts } from "@/components/home/most-viewed-products";
+import { MostSoldProducts } from "@/components/home/most-sold-products";
 import { ProductListSkeleton } from "@/components/home/product-list-skeleton";
 import { data } from '@/data'
 import Image from "next/image"
@@ -62,7 +63,7 @@ export default function Page() {
       </Suspense>
 
       <Suspense fallback={<ProductListSkeleton />}>
-
+        <MostSoldProducts />
       </Suspense>
     </div>
   )
