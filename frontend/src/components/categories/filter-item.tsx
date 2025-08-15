@@ -5,7 +5,7 @@ type Props ={
 
 export const FitlerItem = ({ id, label }:Props) => {
   return (
-  <div className="flex gap-4 items-center">
+  <div className="flex gap-4 items-center mt-4">
     <input
       className="size-6"
       type="checkbox"
