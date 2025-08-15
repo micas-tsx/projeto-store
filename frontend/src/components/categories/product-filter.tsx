@@ -2,6 +2,8 @@
 
 import { useState, type ChangeEvent } from 'react'
 import { useQueryString } from '@/hooks/use-querystring'
+import { FilterGroup } from './filter-group';
+
 
 export const ProductFilterList = () => {
   const [filterOpened, setFilterOpened] = useState(false);
@@ -38,7 +40,8 @@ export const ProductFilterList = () => {
 
       <div className="flex flex-col md:flex-row gap-8 mt-8">
         <div className={`flex-1 md:max-w-70 ${filterOpened ? 'block' : 'hidden'} md:block`}>
-          Filtro 
+          <FilterGroup />
+          <FilterGroup />
         </div>
         <div className="flex-1 grid grid-cols-1 md:grid-cols-3">
           <div>...</div>
