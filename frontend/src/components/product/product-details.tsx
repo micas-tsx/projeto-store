@@ -1,7 +1,9 @@
 "use client"
 
+import { setCartState } from '@/actions/set-cart-state'
 import { useCartStore } from '@/store/cart'
 import { ProductComplete } from '@/types/product'
+import { redirect } from 'next/navigation'
 import Image from 'next/image'
 
 type Props= {
@@ -13,7 +15,12 @@ export const ProductDetails = ({ product }: Props) => {
   const cartStore = useCartStore(state => state)
 
   const addToCart = async () => {
-    //  TODO: criação do carrinho
+    cartStore.addItem({ productId: product.id, quantity: 1 })
+    const updatedCart = useCartStore.getState().cart
+
+    await setCartState(updatedCart)
+
+    redirect('/cart')
   }
 
   return(
@@ -24,6 +31,7 @@ export const ProductDetails = ({ product }: Props) => {
       <div className="text-sm text-gray-500 mb-6">Até 12x no cartão</div>
       <div className="flex gap-4">
         <button 
+          onClick={addToCart}
           className="flex-1 max-w-xs py-4 px-8 bg-blue-600 hover:opacity-90 text-white border-0 rounded-sm cursor-pointer"
         >
           Adicionar ao carrinho

@@ -1,3 +1,5 @@
+"use server"
+
 import { setServerCart } from "@/libs/server-cookies"
 import type { CartItem } from "@/types/cart-item"
 
