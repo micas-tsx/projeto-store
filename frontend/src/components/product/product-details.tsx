@@ -8,6 +8,11 @@ type Props= {
 }
 
 export const ProductDetails = ({ product }: Props) => {
+
+  const addToCart = async () => {
+    //  TODO: criação do carrinho
+  }
+
   return(
     <div className="flex-1">
       <div className="text-xs text-gray-500 mb-2">Cod {product.id}</div>
