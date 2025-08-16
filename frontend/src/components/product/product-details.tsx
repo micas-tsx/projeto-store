@@ -1,5 +1,6 @@
 "use client"
 
+import { useCartStore } from '@/store/cart'
 import { ProductComplete } from '@/types/product'
 import Image from 'next/image'
 
@@ -8,6 +9,8 @@ type Props= {
 }
 
 export const ProductDetails = ({ product }: Props) => {
+
+  const cartStore = useCartStore(state => state)
 
   const addToCart = async () => {
     //  TODO: criação do carrinho
