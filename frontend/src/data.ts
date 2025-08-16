@@ -18,7 +18,7 @@ export const data = {
      '/assets/products/camiseta-php.png',
      '/assets/products/camiseta-react-preta.png'
     ],
-    price: 19.90,
+    price: 49.90,
     liked: false,
     description: 'Alguma description muito foda para produto omg'
   }
