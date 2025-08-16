@@ -16,7 +16,7 @@ export const data = {
     label: 'Camisa PHP',
     images: [
      '/assets/products/camiseta-php.png',
-     '/assets/products/camiseta-react-preta.png'
+     '/assets/products/camiseta-php-grafite.png'
     ],
     price: 49.90,
     liked: false,
