@@ -3,6 +3,9 @@ import { ProductDetails } from "@/components/product/product-details"
 import { ProductDescription } from "@/components/product/product-description"
 import Link from "next/link";
 import { data } from '@/data'
+import { Suspense } from "react";
+import { RelatedProducts } from "@/components/product/related-products";
+import { RelatedProductsSkeleton } from "@/components/product/related-products-skeleton";
 
 type Props = {
   params: Promise<{id: string}>
@@ -27,8 +30,9 @@ export default async function Page({ params }: Props) {
       <ProductDescription text={data.product.description} />
 
       <div className="">
-        <h3>Você também pode gostar:</h3>
-        ...
+        <Suspense fallback={<RelatedProductsSkeleton />}>
+          <RelatedProducts id={data.product.id} />
+        </Suspense>
       </div>
     </div>
   )
