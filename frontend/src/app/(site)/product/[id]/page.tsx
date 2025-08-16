@@ -16,18 +16,18 @@ export default async function Page({ params }: Props) {
   return (
     <div className="">
       <div className="text-gray-500 mb-4">
-        <Link href={'/'}>Home</Link> &gt; <Link href={'/'}>Camisa</Link> &gt; nome do produto
+        <Link href={'/'}>Home</Link> &gt; <Link href={'/'}>TEMPORARIO</Link> &gt; {data.product.label}
       </div>
 
       <div className="flex flex-col md:flex-row gap-6 md:gap-32">
-          <ImageSlider images={[data.product.images]} />
-          <ProductDetails product={[data.product]} />
+          <ImageSlider images={data.product.images} />
+          <ProductDetails product={data.product} />
       </div>
 
       <ProductDescription text={data.product.description} />
 
       <div className="">
-        <h3>Você tamém pode gostar:</h3>
+        <h3>Você também pode gostar:</h3>
         ...
       </div>
     </div>
