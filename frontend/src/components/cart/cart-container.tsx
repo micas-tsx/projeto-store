@@ -30,7 +30,7 @@ export const CartContainer = ({ initialCartProducts, initialSubtotal }: Props) =
         <div className="text-lg">
           Seu carrinho de compras
            <span className="text-gray-500"> 
-            ( {cartStore.cart.length} {cartStore.cart.length != 1 ? 'itens' : 'item'} ) 
+             ( {cartStore.cart.length} {cartStore.cart.length != 1 ? 'itens' : 'item'} ) 
             </span>
         </div>
       </div>
@@ -39,7 +39,7 @@ export const CartContainer = ({ initialCartProducts, initialSubtotal }: Props) =
         <div className="flex-1">
           <CartProductList initialList={initialCartProducts} />
         </div>
-        <div className="">
+        <div className="flex-1">
           Info
         </div>
       </div>
