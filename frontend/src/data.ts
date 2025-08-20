@@ -21,5 +21,10 @@ export const data = {
     price: 49.90,
     liked: false,
     description: 'Alguma description muito foda para produto omg'
-  }
+  },
+  addresses: [
+    {id: 1, zipcode: '12345', street: 'Rua teste 1', number: '123', city: 'cidade 1', state: 'estado 1', country: 'pais 1'},
+    {id: 2, zipcode: '67891', street: 'Rua teste 2', number: '456', city: 'cidade 2', state: 'estado 2', country: 'pais 2'},
+    {id: 3, zipcode: '98765', street: 'Rua teste 3', number: '789', city: 'cidade 3', state: 'estado 3', country: 'pais 3'}
+  ]
 }
