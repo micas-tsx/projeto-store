@@ -56,7 +56,7 @@ export default function Header() {
           </div>
 
           <div className="flex gap-4">
-            <Link href="/my-orders">
+            <Link href="/login">
               <HeaderIcon src="/assets/ui/user-line.png" alt="perfil" />
             </Link>
             <Link href="/cart">

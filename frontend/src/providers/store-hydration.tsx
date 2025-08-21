@@ -11,7 +11,7 @@ export const StoreHydration = () => {
   
   // Hydrate auth state
   useEffect(() => {
-    getAuthState().then(( token ) => {
+    getAuthState().then(({ token } ) => {
       if(token) authStore.setToken(token)  
       authStore.setHydrated(true)
     })
