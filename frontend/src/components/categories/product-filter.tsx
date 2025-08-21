@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState, useTransition, ChangeEvent } from 'react'
+import { useEffect, useState, ChangeEvent } from 'react'
 import { useQueryString } from '@/hooks/use-querystring'
 import { FilterGroup } from './filter-group';
 import { ProductItem } from '../product-item';
