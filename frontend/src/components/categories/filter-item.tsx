@@ -10,7 +10,7 @@ type Props = {
   }
 }
 
-export const FitlerItem = ({ groupId, item }:Props) => {
+export const FilterItem = ({ groupId, item }:Props) => {
   const queryString = useQueryString()
 
   const toggleFilter = (grouId: string, itemId: string) => {

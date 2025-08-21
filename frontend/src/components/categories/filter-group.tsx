@@ -1,15 +1,17 @@
 "use client"
 
 import Image from "next/image"
-import { FitlerItem } from "./filter-item"
+import { FilterItem } from "./filter-item"
 import { useState } from 'react'
+import { CategoryMetadataValue } from "@/types/category"
 
 type Props = {
   id: string
   name: string
+  values: CategoryMetadataValue[]
 }
 
-export const FilterGroup = ({ id, name }:Props) => {
+export const FilterGroup = ({ id, name, values }:Props) => {
   const [opened, setOpened] = useState(true)
 
   return (
@@ -28,9 +30,13 @@ export const FilterGroup = ({ id, name }:Props) => {
       </div>
 
       <div className={`overflow-y-hidden ${opened ? 'max-h-96' : 'max-h-0'} transition-all`}>
-        <FitlerItem groupId={id} item={{ id: "node", label: 'NodeJs' }} />
-        <FitlerItem groupId={id} item={{ id: "react", label: 'React' }} />
-        <FitlerItem groupId={id} item={{ id: "rn", label: 'React native' }} />
+        {values.map(item => (
+          <FilterItem
+            key={item.id}
+            groupId={id}
+            item={item}
+          />
+        ))}
       </div>
     </div>
   )
