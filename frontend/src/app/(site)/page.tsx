@@ -1,15 +1,17 @@
-import { Banners } from "@/components/home/banners";
-import { MostViewedProducts } from "@/components/home/most-viewed-products";
-import { MostSoldProducts } from "@/components/home/most-sold-products";
-import { ProductListSkeleton } from "@/components/home/product-list-skeleton";
-import { data } from '@/data'
+import { Banners } from "@/components/home/banners"
+import { MostViewedProducts } from "@/components/home/most-viewed-products"
+import { MostSoldProducts } from "@/components/home/most-sold-products"
+import { ProductListSkeleton } from "@/components/home/product-list-skeleton"
 import Image from "next/image"
 import { Suspense } from 'react'
+import { getBanners } from "@/actions/get-banners";
 
-export default function Page() {
+export default async function Page() {
+  const banners = await getBanners()
+  
   return(
     <div>
-      <Banners list={data.banners} />
+      <Banners list={banners} />
       <div className="flex flex-col md:flex-row gap-4 md:gap-8 mt-6 mds:mt-12">
         <div className="flex flex-1 py-6 border border-gray-200 rounded-sm">
           <div className="w-32 border-r border-gray-200 flex justify-center items-center">
