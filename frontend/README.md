@@ -31,6 +31,8 @@ O B7Store é uma solução completa de e-commerce que resolve a necessidade de u
 - **Responsividade**: Interface adaptável para todos os dispositivos
 - **Manutenibilidade**: Código limpo e bem estruturado com TypeScript
 - **Escalabilidade**: Arquitetura modular para crescimento futuro
+- **Autenticação**: Sistema completo de login e registro
+- **Carrinho**: Gerenciamento de carrinho de compras com persistência
 
 ### Público-Alvo
 - Desenvolvedores frontend
@@ -67,10 +69,18 @@ src/
 ├── app/                    # App Router do Next.js
 │   ├── (site)/           # Grupo de rotas do site
 │   │   ├── layout.tsx    # Layout principal do site
-│   │   └── page.tsx      # Página inicial
+│   │   ├── page.tsx      # Página inicial
+│   │   ├── login/        # Página de login
+│   │   ├── register/     # Página de registro
+│   │   ├── cart/         # Página do carrinho
+│   │   ├── product/      # Páginas de produtos
+│   │   └── categories/   # Páginas de categorias
 │   ├── globals.css       # Estilos globais
 │   └── layout.tsx        # Layout raiz
 ├── components/            # Componentes reutilizáveis
+│   ├── auth/             # Componentes de autenticação
+│   │   └── login-form.tsx
+│   ├── cart/             # Componentes do carrinho
 │   ├── home/             # Componentes específicos da home
 │   │   ├── banners.tsx   # Carrossel de banners
 │   │   ├── most-viewed-products.tsx
@@ -86,10 +96,18 @@ src/
 ├── types/                 # Definições de tipos TypeScript
 │   ├── banner.ts         # Tipo para banners
 │   ├── product.ts        # Tipo para produtos
+│   ├── cart-item.ts      # Tipo para itens do carrinho
+│   ├── cart-list-item.ts # Tipo para lista do carrinho
+│   ├── address.ts        # Tipo para endereços
 │   └── menu-item.ts      # Tipo para itens de menu
-├── data.ts               # Dados mockados para desenvolvimento
-├── libs/                 # Bibliotecas e utilitários
-└── store/                # Gerenciamento de estado (Zustand)
+├── store/                 # Gerenciamento de estado (Zustand)
+│   ├── auth.ts           # Store de autenticação
+│   └── cart.ts           # Store do carrinho
+├── actions/               # Server Actions do Next.js
+├── providers/             # Providers do React Context
+├── hooks/                 # Custom hooks
+├── libs/                  # Bibliotecas e utilitários
+└── data.ts               # Dados mockados para desenvolvimento
 ```
 
 ### **Padrão de Componentes**
@@ -100,6 +118,8 @@ src/
 
 ### **Gerenciamento de Estado**
 - **Zustand** para estado global da aplicação
+- **Store de Autenticação** para gerenciar login/logout
+- **Store do Carrinho** para gerenciar produtos no carrinho
 - **useState** para estado local dos componentes
 - **Context API** para temas e configurações (futuro)
 
@@ -209,18 +229,11 @@ import Link from 'next/link'
 - ✅ **Sistema de Likes** com estado local
 - ✅ **Navegação** entre páginas
 - ✅ **Componentes Reutilizáveis** modulares
-
-### **Funcionalidades em Desenvolvimento**
-- 🔄 **Página de Produtos Mais Vistos**
-- 🔄 **Sistema de Categorias**
-- 🔄 **Página Individual de Produto**
-
-### **Funcionalidades Futuras**
-- 📋 **Sistema de Busca** com filtros
-- 🛒 **Carrinho de Compras**
-- 👤 **Autenticação de Usuários**
-- 💳 **Checkout e Pagamentos**
-- 📱 **PWA (Progressive Web App)**
+- ✅ **Sistema de Autenticação** com login e registro
+- ✅ **Carrinho de Compras** com persistência local
+- ✅ **Páginas de Produtos** individuais
+- ✅ **Sistema de Categorias**
+- ✅ **Server Actions** para operações do servidor
 
 ## 🎨 Design e UI
 
@@ -257,6 +270,7 @@ import Link from 'next/link'
 - **Banners** com carrossel responsivo
 - **Botões** com estados visuais
 - **Formulários** com validação visual
+- **Carrinho** com animações suaves
 
 ## 📚 Boas Práticas
 
@@ -293,8 +307,9 @@ export const ProductItem = (props: any) => {
 ### **Estrutura de Pastas**
 - **Componentes** organizados por funcionalidade
 - **Types** centralizados em pasta dedicada
-- **Utils** separados por domínio
-- **Constants** para valores estáticos
+- **Store** separado por domínio (auth, cart)
+- **Actions** para operações do servidor
+- **Hooks** para lógica reutilizável
 
 ## 🤝 Contribuição
 
@@ -337,6 +352,8 @@ chore: tarefas de manutenção
 - [ ] Documentação atualizada
 - [ ] Responsividade testada
 - [ ] TypeScript sem erros
+- [ ] Estado do carrinho funciona corretamente
+- [ ] Autenticação testada
 
 ## 📞 Contato
 
@@ -354,7 +371,6 @@ chore: tarefas de manutenção
 - [Instagram](https://instagram.com/micas.tsx)
 
 ---
-
 
 **⭐ Se este projeto te ajudou, considere dar uma estrela no repositório!**
 
