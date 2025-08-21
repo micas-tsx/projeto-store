@@ -7,7 +7,7 @@ type Props = {
   srcSelected?: string
 }
 
-export const HeaderIcon = ({ src, alt, selected, srcSelected }: Props) => {
+export const  HeaderIcon = ({ src, alt, selected, srcSelected }: Props) => {
   return (    
       <div className={`size-12 border-gray-200 border rounded-sm flex justify-center items-center ${selected ? 'bg-blue-600' : 'hover:bg-gray-100'} `}>
         {!selected &&

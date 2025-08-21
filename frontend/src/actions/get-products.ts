@@ -1,3 +1,5 @@
+"use server"
+
 import { api } from "@/libs/axios"
 import type { Product } from "@/types/product"
 
@@ -14,7 +16,7 @@ export const getProducts = async ({ metadata, orderBy, limit }: ProductFilters) 
     if(orderBy) params.orderBy = orderBy
     if(limit) params.limit = limit
     
-    const response = await api.get('/products', {})
+    const response = await api.get('/products', { params })
     if(response.status === 200) {
       return response.data.products as Product[]
     }
