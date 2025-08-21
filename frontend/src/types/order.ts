@@ -1,1 +1,1 @@
-export type Order = 'views' | 'seeling' | 'price' | undefined
+export type Order = 'views' | 'selling' | 'price' | undefined

@@ -5,7 +5,7 @@ import type { Product } from "@/types/product"
 
 type ProductFilters = {
   metadata?: object
-  orderBy?: 'views' | 'seeling' | 'price'
+  orderBy?: 'views' | 'selling' | 'price'
   limit: number
 }
 

@@ -48,7 +48,8 @@ export const AddressModal = ({ open, onClose, onAdd }: Props) => {
     const result = schema.safeParse(form)
 
     if(!result.success) {
-      setError(result.errors.issue[0]?.message || 'Preencha todos os campos')
+      setError(result.error.issues[0]?.message || 'Preencha todos os campos')
+      return
     }
     setError('')
     startTransition(async () => {
