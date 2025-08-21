@@ -1,8 +1,11 @@
-import { data } from "@/data"
+import { getProducts } from "@/actions/get-products"
 import { ProductList } from "../product-list"
 
 export const MostViewedProducts = async () => {
-  // TODO: fazer a req dos produtos
+  const products = await getProducts({
+    orderBy: 'views',
+    limit: 4
+  })
 
   return (
     <div className="mt-10">
@@ -11,7 +14,7 @@ export const MostViewedProducts = async () => {
 
 
       <div className="mt-9">
-        <ProductList list={data.products} />
+        <ProductList list={products} />
       </div>
     </div>
   )
