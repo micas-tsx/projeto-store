@@ -1,0 +1,22 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Api projeto store",
+    "description": "essa api fornece o contato ao db e manipulação dos dados",
+    "contact": {
+      "github": "https://github.com/micas-tsx",
+      "linkedin": "https://linkedin.com/in/micael-abud"
+    },
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/ping": {
+      "get": {
+        "summary": "teste",
+        "description": "testa se esta funcionando",
+        "tags": ["teste"]
+      }
+    }
+  }
+
+}

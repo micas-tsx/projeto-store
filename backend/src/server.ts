@@ -1,6 +1,8 @@
 import cors from 'cors'
 import express, { type Response, type Request, type NextFunction } from 'express'
 import { route } from './routes/main.js'
+import swaggerUi from 'swagger-ui-express'
+import swaggerDocs from './swagger.json'
 
 const server = express()
 
@@ -11,6 +13,8 @@ server.use('/webhook/stripe', express.raw({ type: 'application/json' }))
 
 server.use(express.json())
 server.use(route)
+
+server.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs))
 
 server.use((err:any, req: Request, res: Response, next: NextFunction) => {
   console.log(err);
