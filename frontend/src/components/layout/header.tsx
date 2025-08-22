@@ -6,6 +6,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { HeaderSearch } from "./header-search";
 import { MenuItem } from '@/types/menu-item'
+import { useCartStore } from '@/store/cart'
 
 export default function Header() {
   const menu: MenuItem[] = [
@@ -14,6 +15,8 @@ export default function Header() {
   ];
 
   const [menuOpened, setMenuOpened] = useState(false);
+
+  const cartStore = useCartStore(state => state)
 
   return (
     <header className="bg-white border-b border-gray-100">
@@ -57,12 +60,17 @@ export default function Header() {
 
           <div className="flex gap-4">
             <Link href="/login">
-              <HeaderIcon src="/assets/ui/user-line.png" alt="perfil" />
+              <HeaderIcon 
+                src="/assets/ui/user-line.png" 
+                alt="perfil" 
+                isCart={false}
+              />
             </Link>
             <Link href="/cart">
               <HeaderIcon
                 src="/assets/ui/shopping-bag-4-line.png"
                 alt="carrinho"
+                isCart={true}
               />
             </Link>
             <div
@@ -74,6 +82,7 @@ export default function Header() {
                 alt="menu"
                 selected={menuOpened}
                 srcSelected="/assets/ui/menu-line-white.png"
+                isCart={false}
               />
             </div>
           </div>
