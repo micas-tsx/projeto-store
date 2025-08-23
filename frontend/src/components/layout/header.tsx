@@ -7,6 +7,7 @@ import { useState } from "react";
 import { HeaderSearch } from "./header-search";
 import { MenuItem } from '@/types/menu-item'
 import { useCartStore } from '@/store/cart'
+import { useAuthStore } from "@/store/auth";
 
 export default function Header() {
   const menu: MenuItem[] = [
@@ -17,6 +18,7 @@ export default function Header() {
   const [menuOpened, setMenuOpened] = useState(false);
 
   const cartStore = useCartStore(state => state)
+  const { token } = useAuthStore(state => state)
 
   return (
     <header className="bg-white border-b border-gray-100">
@@ -44,9 +46,9 @@ export default function Header() {
                 <ul className="flex gap-10 font-medium text-gray-500">
                   {menu.map((item) => (
                     <li key={item.label}>
-                    <Link key={item.label} href={item.href}>
-                      {item.label}
-                    </Link>
+                      <Link key={item.label} href={item.href}>
+                        {item.label}
+                      </Link>
                     </li>
                   ))}
                 </ul>
@@ -59,13 +61,25 @@ export default function Header() {
           </div>
 
           <div className="flex gap-4">
-            <Link href="/login">
-              <HeaderIcon 
-                src="/assets/ui/user-line.png" 
-                alt="perfil" 
-                isCart={false}
-              />
-            </Link>
+            {token &&
+              <Link href="/my-order">
+                <HeaderIcon
+                  src="/assets/ui/user-line.png"
+                  alt="perfil"
+                  isCart={false} // isCart -> coloca a bolinha de numero de itens dentro do carrinho
+                />
+              </Link>
+            }
+
+            {!token &&
+              <Link href="/login">
+                <HeaderIcon
+                  src="/assets/ui/user-line.png"
+                  alt="perfil"
+                  isCart={false}
+                />
+              </Link>
+            }
             <Link href="/cart">
               <HeaderIcon
                 src="/assets/ui/shopping-bag-4-line.png"

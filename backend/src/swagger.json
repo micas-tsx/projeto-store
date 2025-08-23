@@ -16,6 +16,83 @@
         "description": "testa se esta funcionando",
         "tags": ["teste"]
       }
+    },
+    "/banners": {
+      "get": { 
+        "summary": "pegar os banners",
+        "description": "pega os banners do banco de dados",
+        "tags": ["banner"]
+      }
+    },
+    "/products" : {
+      "get": {
+        "summary":"pegar os produtos",
+        "description": "pega os produtos do banco de dados",
+        "tags": ["products"]
+      }
+    },
+    "/product/:id": {
+      "get": {
+        "summary": "pega um produto",
+        "description": "pega um produto em especifico do banco de dados",
+        "tags": ["products"]
+      }
+    },
+    "/product/:id/related": {
+      "get": {
+        "summary":"pega um produto relacionado",
+        "description": "pega um produto relacionado no banco de dados",
+        "tags": ["products"]
+      },
+      "response": {
+        "200": {
+          "description": "success"
+        },
+        "400":{
+          "description": "Parameters invalid"
+        }
+      }
+    },
+    "/category/:slug/metadata": {
+      "get": {
+        "summary":"pega produto filtrado",
+        "description": "pega um produto de uma categoria especifico pela sua metadata",
+        "tags": ["category"]
+      }
+    },
+    "/cart/mount": {
+      "post": {
+        "summary": "coloca um item no carrinho",
+        "description": "coloca um produto no carrinho, montando ele",
+        "tegs": ["cart"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CartMount"
+              },
+              "examples": {
+                "CartMount": {
+                  "ids": [1123, 123123, 1231231, 1231231]
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+
+  "components": {
+    "schemas": {
+      "CartMount": {
+        "type": "object",
+        "properties": {
+          "ids": {
+            "type": "number"
+          }
+        }
+      }
     }
   }
 
