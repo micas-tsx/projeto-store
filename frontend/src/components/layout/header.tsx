@@ -62,7 +62,7 @@ export default function Header() {
 
           <div className="flex gap-4">
             {token &&
-              <Link href="/my-order">
+              <Link href="/my-orders">
                 <HeaderIcon
                   src="/assets/ui/user-line.png"
                   alt="perfil"
