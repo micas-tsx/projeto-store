@@ -59,6 +59,25 @@ export const updatedOrderStatus = async(orderId: number, status: 'paid'| 'cancel
   })
 }
 
+export const cancelOrder = async(orderId: number, userId: number) => {
+  const order = await prisma.order.findFirst({
+    where: { id: orderId, userId }
+  })
+  
+  if(!order) return { success: false, error: 'Pedido não encontrado' }
+  
+  if(order.status !== 'pending') {
+    return { success: false, error: 'Apenas pedidos pendentes podem ser cancelados' }
+  }
+  
+  await prisma.order.update({
+    where: { id: orderId },
+    data: { status: 'cancelled' }
+  })
+  
+  return { success: true, error: null }
+}
+
 export const getUserOrders = async(userId: number) => {
   return await prisma.order.findMany({
     where: { userId },

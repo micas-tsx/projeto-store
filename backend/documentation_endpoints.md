@@ -379,6 +379,34 @@ This document describes all available API routes, their parameters, request/resp
   }
   ```
 
+### `PUT /orders/:id/cancel`
+- **Description:** Cancel a pending order by ID for the logged-in user.
+- **Auth:** Yes (Bearer token)
+- **Params:**
+  | Name | Type             | Required |
+  | ---- | ---------------- | -------- |
+  | id   | string (numeric) | Yes      |
+- **Response (Success):**
+  ```json
+  {
+    "erro": null,
+    "message": "Pedido cancelado com sucesso"
+  }
+  ```
+- **Response (Error - Order not found):**
+  ```json
+  {
+    "erro": "Pedido não encontrado"
+  }
+  ```
+- **Response (Error - Cannot cancel):**
+  ```json
+  {
+    "erro": "Apenas pedidos pendentes podem ser cancelados"
+  }
+  ```
+- **Note:** Only orders with status "pending" can be cancelled.
+
 ### `GET /orders/session`
 - **Description:** Get order ID by Stripe session ID.
 - **Auth:** None

@@ -1,7 +1,7 @@
 import type { RequestHandler } from "express";
 import { getOrderBySessionIdSchema } from "../schema/get-order-by-session-id-schema";
 import { getOrderIdFromSession } from "../services/payment";
-import { getOrderById, getUserOrders } from "../services/order";
+import { getOrderById, getUserOrders, cancelOrder as cancelOrderService } from "../services/order";
 import { getOrderSchema } from "../schema/get-order-schema";
 import { getAbsoluteImageUrl } from "../utils/get-absolute-image-url";
 
@@ -73,4 +73,29 @@ export const getOrder: RequestHandler = async(req, res) => {
       orderItems: itemsWithAbsoluteUrl
     }
   })
+}
+
+export const cancelOrder: RequestHandler = async(req, res) => {
+  const userId = (req as any).userId
+  if(!userId) {
+    res.status(401).json({erro: 'usuário não autenticado'})
+    return
+  }
+  
+  const result = getOrderSchema.safeParse(req.params);
+  if(!result.success) {
+    res.status(400).json({erro: 'id inválido'})
+    return
+  }
+
+  const { id } = result.data;
+
+  const cancelResult = await cancelOrderService(parseInt(id), userId)
+  
+  if(!cancelResult.success) {
+    res.status(400).json({erro: cancelResult.error})
+    return
+  }
+
+  res.json({ erro: null, message: 'Pedido cancelado com sucesso' })
 }
