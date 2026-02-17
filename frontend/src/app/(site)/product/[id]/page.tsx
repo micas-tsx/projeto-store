@@ -5,7 +5,7 @@ import Link from "next/link";
 import { Suspense } from "react";
 import { RelatedProducts } from "@/components/product/related-products";
 import { RelatedProductsSkeleton } from "@/components/product/related-products-skeleton";
-import redirect from 'next/navigation'
+import { redirect } from 'next/navigation'
 import { getProductWithCategory } from "@/actions/get-product-with-categorie";
 
 type Props = {
@@ -15,7 +15,7 @@ type Props = {
 export default async function Page({ params }: Props) {
   const { id } = await params;
   
-  const data = await getProductWithCategory(parseInt(id))
+  const data = await getProductWithCategory(id)
 
   if(!data) {
     redirect('/')
