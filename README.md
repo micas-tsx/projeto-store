@@ -304,6 +304,8 @@ src/
 - ✅ **Sistema de Likes** com estado local
 - ✅ **Navegação** entre páginas
 - ✅ **Componentes Reutilizáveis** modulares
+- ✅ **Meus Pedidos** com histórico e cancelamento
+- ✅ **Central de Ajuda** com FAQ e suporte
 
 ### **Integração com Backend**
 ```typescript
