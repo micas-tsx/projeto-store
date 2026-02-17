@@ -51,6 +51,7 @@ export const Footer = () => {
                             {menu.map((item, index) => (
                                 <li key={index}><Link href={item.href}>{item.label}</Link></li>
                             ))}
+                            <li><Link href="/ajuda">Ajuda</Link></li>
                         </ul>
                     </div>
                     <div className="flex flex-col md:flex-row gap-6 py-16 md:py-10 border-b border-gray-700">
